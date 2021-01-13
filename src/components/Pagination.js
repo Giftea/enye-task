@@ -1,6 +1,6 @@
 import React from "react";
 
-function Pagination({ usersPerPage, users, Loading , paginate}) {
+function Pagination({ usersPerPage, users, Loading, paginate }) {
   const pageNumbers = [];
 
   if (Loading) {
@@ -16,13 +16,18 @@ function Pagination({ usersPerPage, users, Loading , paginate}) {
 
     return (
       <div>
-        <ul className = "pagination">
+        <ul className="pagination">
           {pageNumbers.map((number) => {
             return (
               <li key={number}>
-                <a onClick = {() =>{
-                    paginate(number)
-                }} href="!#">{number}</a>
+                <a
+                  onClick={() => {
+                    paginate(number);
+                  }}
+                  href="!#"
+                >
+                  {number}
+                </a>
               </li>
             );
           })}

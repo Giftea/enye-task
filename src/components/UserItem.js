@@ -1,12 +1,20 @@
 import React from "react";
 import "./UserItem.css";
-import './Search'
-import './FilterByGender'
-import './FilterByPayementMethod'
+import "./Search";
+import "./FilterByGender";
+import "./FilterByPayementMethod";
 
-
-function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setUser, gender, paymentMethod, setPaymentMethod}) {
-
+function UserItem({
+  users,
+  Loading,
+  usersPerPage,
+  currentPage,
+  searchTerm,
+  setUser,
+  gender,
+  paymentMethod,
+  setPaymentMethod,
+}) {
   if (Loading) {
     return <h1>Loading...</h1>;
   } else {
@@ -16,69 +24,80 @@ function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setU
       indexOfFirstUser,
       indexOfLastUser
     );
-   
+
     return (
       <div className="container">
         {!Loading &&
-          currentUser.filter((searchUser) => {
-            if(searchTerm === ''){
-                return searchUser
-            } else if (searchUser.FirstName.toLowerCase().includes(searchTerm.toLowerCase()) || searchUser.LastName.toLowerCase().includes(searchTerm.toLowerCase())){
-                return searchUser
-            }
-        
-        }).filter((filterUser) => {
-          if(gender === ''){
-            return filterUser}
-         
-          else if (filterUser.Gender.toLowerCase() === gender ) {
-            return filterUser
-          }
-        
-      }).filter((filterUser) => {
-        if( paymentMethod === ''){
-          return filterUser}
-       
-        else if ( filterUser.PaymentMethod.toLowerCase() === paymentMethod) {
-          return filterUser
-        }
-      
-    }).map((user, index) => {
-            return (
-             
-               
-             <div>
-               
-                <div className="card">
-               <div className="top">
-               <div className = 'circle'>
-                  <p>{user.UserName}</p>
-                </div>
-                <div className = 'visible'> 
-                <p className ='name'> {user.FirstName} {user.LastName} </p>
-                <p> Gender: {user.Gender} </p>
-                <p> Mobile Number:{user.PhoneNumber} </p>
-                <p> Email: {user.Email} </p>
-                <p> Website: {user.DomainName} {user.URL}</p>
-                <p> {user.PaymentMethod} </p>
-                
-                
-                </div>
-               </div>
+          currentUser
+            .filter((searchUser) => {
+              if (searchTerm === "") {
+                return searchUser;
+              } else if (
+                searchUser.FirstName.toLowerCase().includes(
+                  searchTerm.toLowerCase()
+                ) ||
+                searchUser.LastName.toLowerCase().includes(
+                  searchTerm.toLowerCase()
+                )
+              ) {
+                return searchUser;
+              }
+            })
+            .filter((filterUser) => {
+              if (gender === "") {
+                return filterUser;
+              } else if (filterUser.Gender.toLowerCase() === gender) {
+                return filterUser;
+              }
+            })
+            .filter((filterUser) => {
+              if (paymentMethod === "") {
+                return filterUser;
+              } else if (
+                filterUser.PaymentMethod.toLowerCase() === paymentMethod
+              ) {
+                return filterUser;
+              }
+            })
+            .map((user, index) => {
+              return (
+                <div>
+                  <div className="card">
+                    <div className="top">
+                      <div className="circle">
+                        <p>{user.UserName}</p>
+                      </div>
+                      <div className="visible">
+                        <p className="name">
+                          {" "}
+                          {user.FirstName} {user.LastName}{" "}
+                        </p>
+                        <p> Gender: {user.Gender} </p>
+                        <p> Mobile Number:{user.PhoneNumber} </p>
+                        <p> Email: {user.Email} </p>
+                        <p>
+                          {" "}
+                          Website: {user.DomainName} {user.URL}
+                        </p>
+                        <p> {user.PaymentMethod} </p>
+                      </div>
+                    </div>
 
-                <div  className = 'hidden'>
-                <p> {user.CreditCardNumber} {user.CreditCardType} </p>
-                <p> {user.PaymentMethod} </p>
+                    <div className="hidden">
+                      <p>
+                        {" "}
+                        {user.CreditCardNumber} {user.CreditCardType}{" "}
+                      </p>
+                      <p> {user.PaymentMethod} </p>
 
-                {/* <p> {user.DomainName} {user.URL} </p> */}
-                <p> {user.CreditCardType} </p>
-                <p> {user.PaymentMethod} </p>
-                </div>                                
-              </div>
-             
-             </div>
-            );
-          })}
+                      {/* <p> {user.DomainName} {user.URL} </p> */}
+                      <p> {user.CreditCardType} </p>
+                      <p> {user.PaymentMethod} </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
       </div>
     );
   }
@@ -88,7 +107,6 @@ function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setU
 // CreditCardType: "VISA"
 // PaymentMethod: "cc"
 
-
 // DomainName: "HFKbdUD.biz"
 // URL: "http://dgoJEqo.ru/"
 
@@ -97,7 +115,6 @@ function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setU
 
 // Latitude: -66.565475
 // Longitude: 150.03503
-
 
 // UserName: "UMOTkYe"
 // FirstName: "Mia"  // LastName: "Powlowski"

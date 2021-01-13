@@ -4,7 +4,7 @@ import UserItem from "./components/UserItem.js";
 import Pagination from "./components/Pagination.js";
 import Search from "./components/Search";
 import FilterByGender from "./components/FilterByGender";
-import FilterByPayementMethod from './components/FilterByPayementMethod'
+import FilterByPayementMethod from "./components/FilterByPayementMethod";
 
 function App() {
   const [user, setUser] = useState([]);
@@ -15,24 +15,17 @@ function App() {
   const [gender, setGender] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
 
-
- 
   const getUser = async () => {
     const res = await fetch("http://api.enye.tech/v1/challenge/records");
     const data = await res.json();
     setUser(data);
     setLoading(false);
-    setGender('')
-    setPaymentMethod('')
+    setGender("");
+    setPaymentMethod("");
   };
   useEffect(() => {
-
     getUser();
   }, []);
-
- 
-         
-       
 
   //change page
 
@@ -47,20 +40,23 @@ function App() {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-       <button onClick={getUser} className="btn">
-            Refresh
-          </button>
-      <FilterByGender Loading={loading} 
-      users={user}  setUser={setUser} 
-      gender = {gender}
-      setGender = {setGender}/>
+      <button onClick={getUser} className="btn">
+        Refresh
+      </button>
+      <FilterByGender
+        Loading={loading}
+        users={user}
+        setUser={setUser}
+        gender={gender}
+        setGender={setGender}
+      />
       <FilterByPayementMethod
-Loading={loading} 
-users={user}  setUser={setUser} 
-paymentMethod = {paymentMethod}
-setPaymentMethod = {setPaymentMethod}
-      
-       />
+        Loading={loading}
+        users={user}
+        setUser={setUser}
+        paymentMethod={paymentMethod}
+        setPaymentMethod={setPaymentMethod}
+      />
       <UserItem
         users={user}
         usersPerPage={usersPerPage}
@@ -68,9 +64,9 @@ setPaymentMethod = {setPaymentMethod}
         currentPage={currentPage}
         searchTerm={searchTerm}
         setUser={setUser}
-        gender = {gender}
-        paymentMethod = {paymentMethod}
-setPaymentMethod = {setPaymentMethod}
+        gender={gender}
+        paymentMethod={paymentMethod}
+        setPaymentMethod={setPaymentMethod}
       />
       <Pagination
         usersPerPage={usersPerPage}
