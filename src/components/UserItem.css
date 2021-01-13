@@ -33,7 +33,7 @@ body {
     transition: 0.4s;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  /* background-color: hsla(204, 42%, 83%, 0.849); */
+  background-color: hsla(204, 43%, 83%, 0.548);
 }
 
 .card:hover{
@@ -69,7 +69,7 @@ align-self: center;
 
 .card .top .visible {
   padding: 5px;
- border: 1px solid red;
+ /* border: 1px solid red; */
  text-align: left;
   
   /* margin-top: 20px; */

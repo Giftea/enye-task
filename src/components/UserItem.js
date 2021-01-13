@@ -1,9 +1,12 @@
 import React from "react";
 import "./UserItem.css";
 import './Search'
+import './FilterByGender'
+import './FilterByPayementMethod'
 
 
-function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setUser}) {
+function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setUser, gender, paymentMethod, setPaymentMethod}) {
+
   if (Loading) {
     return <h1>Loading...</h1>;
   } else {
@@ -18,12 +21,29 @@ function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setU
       <div className="container">
         {!Loading &&
           currentUser.filter((searchUser) => {
-            if(searchTerm == ''){
+            if(searchTerm === ''){
                 return searchUser
             } else if (searchUser.FirstName.toLowerCase().includes(searchTerm.toLowerCase()) || searchUser.LastName.toLowerCase().includes(searchTerm.toLowerCase())){
                 return searchUser
             }
-        }).map((user, index) => {
+        
+        }).filter((filterUser) => {
+          if(gender === ''){
+            return filterUser}
+         
+          else if (filterUser.Gender.toLowerCase() === gender ) {
+            return filterUser
+          }
+        
+      }).filter((filterUser) => {
+        if( paymentMethod === ''){
+          return filterUser}
+       
+        else if ( filterUser.PaymentMethod.toLowerCase() === paymentMethod) {
+          return filterUser
+        }
+      
+    }).map((user, index) => {
             return (
              
                
@@ -40,6 +60,8 @@ function UserItem({ users, Loading, usersPerPage, currentPage , searchTerm, setU
                 <p> Mobile Number:{user.PhoneNumber} </p>
                 <p> Email: {user.Email} </p>
                 <p> Website: {user.DomainName} {user.URL}</p>
+                <p> {user.PaymentMethod} </p>
+                
                 
                 </div>
                </div>

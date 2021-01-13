@@ -4,6 +4,7 @@ import UserItem from "./components/UserItem.js";
 import Pagination from "./components/Pagination.js";
 import Search from "./components/Search";
 import FilterByGender from "./components/FilterByGender";
+import FilterByPayementMethod from './components/FilterByPayementMethod'
 
 function App() {
   const [user, setUser] = useState([]);
@@ -11,31 +12,27 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage, setUsersPerPage] = useState(20);
   const [searchTerm, setSearchTerm] = useState("");
+  const [gender, setGender] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
 
+
+ 
+  const getUser = async () => {
+    const res = await fetch("http://api.enye.tech/v1/challenge/records");
+    const data = await res.json();
+    setUser(data);
+    setLoading(false);
+    setGender('')
+    setPaymentMethod('')
+  };
   useEffect(() => {
-    const getUser = async () => {
-      const res = await fetch("http://api.enye.tech/v1/challenge/records");
-      const data = await res.json();
-      setUser(data);
-      setLoading(false);
-    };
+
     getUser();
   }, []);
 
-  // filter
-
-  // const filterItems = (gender) => {
-  //   if(gender === 'Female'){
-  //     const filteredUsers = user.records.profiles.filter((user) => user.Gender === gender)
-  //    return setUser(filteredUsers);
-
-  //   } else   if(gender === 'Male'){
-  //     const filteredUsers = user.records.profiles.filter((user) => user.Gender === gender)
-  //    return setUser(filteredUsers);
-
-  //   }
-
-  // }
+ 
+         
+       
 
   //change page
 
@@ -50,7 +47,20 @@ function App() {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-      <FilterByGender Loading={loading} users={user}  setUser={setUser}/>
+       <button onClick={getUser} className="btn">
+            Refresh
+          </button>
+      <FilterByGender Loading={loading} 
+      users={user}  setUser={setUser} 
+      gender = {gender}
+      setGender = {setGender}/>
+      <FilterByPayementMethod
+Loading={loading} 
+users={user}  setUser={setUser} 
+paymentMethod = {paymentMethod}
+setPaymentMethod = {setPaymentMethod}
+      
+       />
       <UserItem
         users={user}
         usersPerPage={usersPerPage}
@@ -58,6 +68,9 @@ function App() {
         currentPage={currentPage}
         searchTerm={searchTerm}
         setUser={setUser}
+        gender = {gender}
+        paymentMethod = {paymentMethod}
+setPaymentMethod = {setPaymentMethod}
       />
       <Pagination
         usersPerPage={usersPerPage}
