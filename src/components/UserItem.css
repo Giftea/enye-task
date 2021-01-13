@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  display: grid;
+  place-items: center;
+  background-color: #f2f2f2;
+  font-size: 14px;
+}
+
+.container {
+  padding: 0 40px;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card {
+  
+  width: 350px;
+  margin: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ padding: 7px;
+    transition: 0.4s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  /* background-color: hsla(204, 42%, 83%, 0.849); */
+}
+
+.card:hover{
+  /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); */
+  box-shadow: 5px 5px 10px rgba(87, 124, 122, 0.096);
+
+}
+
+/* .container .card .top {
+  display: flex;
+ border: 1px solid rgb(7, 7, 7);
+ justify-content: space-between;
+
+} */
+
+.container .card .top .circle{
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background-color:white;
+border: 1px solid rgb(10, 119, 182);
+text-align: center;
+
+align-self: center;
+}
+
+.container .card .top .circle p {
+  color: #c59d5f;
+  padding: 30px 0;
+  font-size: 10px;
+
+}
+
+.card .top .visible {
+  padding: 5px;
+ border: 1px solid red;
+ text-align: left;
+  
+  /* margin-top: 20px; */
+}
+
+.card .top .visible .name {
+  font-size: 17px;
+  font-weight: bold;
+  /* color: #202020; */
+ color: #c59d5f; 
+
+}
+
+/* .card .visible  p {
+      font-size: 18px;
+      color: #e74c3c;
+      line-height: 20px;
+  } */
+
+.card .hidden {
+  padding: 0 20px 10px 20px;
+ 
+  background-color: white;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.1s;
+}
+
+.card:hover .hidden{
+  opacity: 1;
+  visibility: visible;
+  margin-top: 50px;
+}
+
+.small {
+  font-size: 12px;
+  color: rgb(10, 119, 182);
+}
+
+/* pagination styling */
+
+.pagination {
+  display: flex;
+}
+
+.pagination > li {
+  color: rgb(10, 119, 182);
+  border: 2px solid rgb(10, 119, 182);
+  border-radius: 5px;
+  list-style: none;
+  height: 30px;
+  width: 30px;
+  margin: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pagination > li:hover {
+  background-color: #c5c5c5b9;
+  border: 3px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pagination > li > a {
+  color: rgb(10, 119, 182);
+  text-decoration: none;
+}
+
+.pagination > li > a:hover {
+  color: rgb(6, 113, 175);
+}
+
+/* .pagination > li > a:active {
+  background-color: rgb(6, 113, 175);
+  color: white;
+}
+
+.pagination > li:active{
+  background-color: rgb(6, 113, 175);
+  color: white;
+} */
+
+@media screen and (max-width: 978px){
+  .container{
+    
+    flex-direction: column;
+  }
+
+  .card{
+    max-width: 700px;
+    margin: 20px 0;
+  }
+}
