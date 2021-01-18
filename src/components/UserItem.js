@@ -3,6 +3,10 @@ import "./UserItem.css";
 import "./Search";
 import "./FilterByGender";
 import "./FilterByPayementMethod";
+import Pagination from "./Pagination";
+import RefreshBtn from "./RefreshBtn";
+import './Spinner-1s-200px.svg'
+
 
 function UserItem({
   users,
@@ -10,13 +14,21 @@ function UserItem({
   usersPerPage,
   currentPage,
   searchTerm,
-  setUser,
   gender,
   paymentMethod,
-  setPaymentMethod,
+  paginate,
+  getUser,
 }) {
   if (Loading) {
-    return <h1>Loading...</h1>;
+
+    return (
+      <div className ='spinner'>
+    
+    <div class="loadingio-spinner-eclipse-mbm8xhj15uq"><div class="ldio-x6bhdfzgddh">
+    <div></div>
+    </div></div></div>
+    )
+    ;
   } else {
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -26,126 +38,89 @@ function UserItem({
     );
 
     return (
-      <div className="container">
-        {!Loading &&
-          currentUser
-            .filter((searchUser) => {
-              if (searchTerm === "") {
-                return searchUser;
-              } else if (
-                searchUser.FirstName.toLowerCase().includes(
-                  searchTerm.toLowerCase()
-                ) ||
-                searchUser.LastName.toLowerCase().includes(
-                  searchTerm.toLowerCase()
-                )
-              ) {
-                return searchUser;
-              }
-            })
-            .filter((filterUser) => {
-              if (gender === "") {
-                return filterUser;
-              } else if (filterUser.Gender.toLowerCase() === gender) {
-                return filterUser;
-              }
-            })
-            .filter((filterUser) => {
-              if (paymentMethod === "") {
-                return filterUser;
-              } else if (
-                filterUser.PaymentMethod.toLowerCase() === paymentMethod
-              ) {
-                return filterUser;
-              }
-            })
-            .map((user, index) => {
-              return (
-                <div>
-                  <div className="card">
-                    <div className="top">
-                      <div className="circle">
-                        <p>{user.UserName}</p>
-                      </div>
-                      <div className="visible">
-                        <p className="name">
-                          {" "}
-                          {user.FirstName} {user.LastName}{" "}
-                        </p>
-                        <p> Gender: {user.Gender} </p>
-                        <p> Mobile Number:{user.PhoneNumber} </p>
-                        <p> Email: {user.Email} </p>
-                        <p>
-                          {" "}
-                          Website: {user.DomainName} {user.URL}
-                        </p>
-                        <p> {user.PaymentMethod} </p>
-                      </div>
-                    </div>
+      <div className="mainContainer">
+        <div>
+          <table className="tableContent">
+            <thead>
+              <tr>
+                {/* <th>S/n</th> */}
+                <th>Name</th>
+                <th>Username</th>
 
-                    <div className="hidden">
-                      <p>
-                        {" "}
-                        {user.CreditCardNumber} {user.CreditCardType}{" "}
-                      </p>
-                      <p> {user.PaymentMethod} </p>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Payment Method</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              {!Loading &&
+                currentUser
+                  .filter((searchUser) => {
+                    if (searchTerm === "") {
+                      return searchUser;
+                    } else if (
+                      searchUser.FirstName.toLowerCase().includes(
+                        searchTerm.toLowerCase()
+                      ) ||
+                      searchUser.LastName.toLowerCase().includes(
+                        searchTerm.toLowerCase()
+                      )
+                    ) {
+                      return searchUser;
+                    }
+                  })
+                  .filter((filterUser) => {
+                    if (gender === "") {
+                      return filterUser;
+                    } else if (filterUser.Gender.toLowerCase() === gender) {
+                      return filterUser;
+                    }
+                  })
+                  .filter((filterUser) => {
+                    if (paymentMethod === "") {
+                      return filterUser;
+                    } else if (
+                      filterUser.PaymentMethod.toLowerCase() === paymentMethod
+                    ) {
+                      return filterUser;
+                    }
+                  })
+                  .map((user, index) => {
+                    return (
+                      <tr key={index}>
+                        {/* <th>{index}</th> */}
+                        <td data-label="Name">
+                          {user.FirstName} {user.LastName}
+                        </td>
+                        <td data-label="Username">{user.UserName}</td>
 
-                      {/* <p> {user.DomainName} {user.URL} </p> */}
-                      <p> {user.CreditCardType} </p>
-                      <p> {user.PaymentMethod} </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                        <td data-label="Email">{user.Email}</td>
+                        <td data-label="Gender">{user.Gender} </td>
+                        <td data-label="Payment Method">
+                          {user.PaymentMethod}
+                        </td>
+                      </tr>
+                    );
+                  })}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <Pagination
+            usersPerPage={usersPerPage}
+            users={users}
+            Loading={Loading}
+            paginate={paginate}
+          />
+        </div>
+
+        <div>
+          <RefreshBtn getUser={getUser} />
+        </div>
       </div>
     );
   }
-}
-
-// CreditCardNumber: "4485726554922584"
-// CreditCardType: "VISA"
-// PaymentMethod: "cc"
-
-// DomainName: "HFKbdUD.biz"
-// URL: "http://dgoJEqo.ru/"
-
-// LastLogin: "1985-03-23 18:22:37"
-// MacAddress: "9b:9d:27:8e:2d:c5"
-
-// Latitude: -66.565475
-// Longitude: 150.03503
-
-// UserName: "UMOTkYe"
-// FirstName: "Mia"  // LastName: "Powlowski"
-// PhoneNumber: "946-810-2571"
-// Gender: "Prefer to skip"
-// Email: "OZfSIVZ@Sgavrgw.com"
-
-{
-  /* <p>
-{" "}
-{user.FirstName} {user.LastName}
-</p>
-<p> {user.Email} </p>
-<p> {user.PhoneNumber} </p>
-<p> {user.Gender} </p>
-<p>
-{" "}
-{user.Latitude} {user.Longitude}
-</p>
-<p>
-{" "}
-{user.CreditCardNumber} {user.CreditCardType}
-</p>
-<p>
-{" "}
-{user.MacAddress} {user.LastLogin}{" "}
-</p>
-<p> {user.PaymentMethod} </p>
-<p className="small">
-{user.DomainName} {user.URL}{" "}
-</p> */
 }
 
 export default UserItem;

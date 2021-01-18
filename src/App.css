@@ -1,0 +1,11 @@
+.searchContainer{
+    display: flex;
+    align-items: center;
+}
+
+.hero{
+ background-image: url('./asset/kourosh-qaffari-RrhhzitYizg-unsplash.jpg');
+ background-position: center;
+ background-size: cover;
+    
+}

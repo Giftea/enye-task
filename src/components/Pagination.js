@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Pagination({ usersPerPage, users, Loading, paginate }) {
+function Pagination({ usersPerPage, users, Loading, paginate, click }) {
   const pageNumbers = [];
 
   if (Loading) {
-    return <h1>...</h1>;
+    return <div></div>;
   } else if (!Loading) {
     for (
       let i = 1;
@@ -20,14 +20,15 @@ function Pagination({ usersPerPage, users, Loading, paginate }) {
           {pageNumbers.map((number) => {
             return (
               <li key={number}>
-                <a
+                <button
                   onClick={() => {
                     paginate(number);
                   }}
                   href="!#"
+                  className ="paginateBtn"
                 >
                   {number}
-                </a>
+                </button>
               </li>
             );
           })}

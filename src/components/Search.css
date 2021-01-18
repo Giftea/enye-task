@@ -1,0 +1,121 @@
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  height: 13rem;
+  /* background-color: red; */
+}
+
+.searchContainer > div {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 3rem;
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 7px;
+  background-color: rgba(240, 248, 255, 0.678);
+}
+
+.searchContainer > div >.search{
+ color: #04725c;
+
+}
+
+.searchContainer > div>input {
+  width: 50%;
+  /* height: 3rem; */
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 7px;
+  background-color: transparent;
+}
+
+.filterAndPaginateSection {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  align-items: flex-start;
+  /* background-color: rgb(231, 159, 228); */
+
+  height: 8rem;
+}
+
+.filterSection {
+  display: flex;
+  justify-content: space-around;
+  /* border: 2px solid black; */
+  align-items: center;
+  font-size: 15px;
+  width: 30%;
+}
+
+@media screen and (max-width: 800px) {
+  .filterSection {
+    width: 80%;
+  }
+
+  .searchContainer > input {
+    width: 75%;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  background-color: black;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+.dropdownContent div:hover {
+  background-color: #ddd;
+}
+
+.dropBtn {
+  font-size: 15px;
+  border: none;
+  outline: none;
+  color: white;
+  /* border-radius: 7px; */
+  background-color: transparent;
+  /* height: 40px;
+width: 100px; */
+  cursor: pointer;
+}
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba (0, 0, 0, 0.2);
+  font-size: 12px;
+  z-index: 1;
+  color: black;
+  cursor: pointer;
+}
+
+.select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 7px;
+}
+
+.select label {
+  padding: 0px 3px;
+  cursor: pointer;
+}
+.select input {
+  cursor: pointer;
+}
